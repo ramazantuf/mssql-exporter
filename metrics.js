@@ -272,9 +272,7 @@ const mssql_io_stall = {
 cast(DB_Name(a.database_id) as varchar) as name,
     max(io_stall_read_ms),
     max(io_stall_write_ms),
-    max(io_stall),
-    max(io_stall_queued_read_ms),
-    max(io_stall_queued_write_ms)
+    max(io_stall)
 FROM
 sys.dm_io_virtual_file_stats(null, null) a
 INNER JOIN sys.master_files b ON a.database_id = b.database_id and a.file_id = b.file_id
@@ -286,14 +284,10 @@ GROUP BY a.database_id`,
       const read = row[1].value;
       const write = row[2].value;
       const stall = row[3].value;
-      const queued_read = row[4].value;
-      const queued_write = row[5].value;
-      metricsLog("Fetched number of stalls for database", database, "read", read, "write", write, "queued_read", queued_read, "queued_write", queued_write);
+      metricsLog("Fetched number of stalls for database", database, "read", read, "write", write);
       metrics.mssql_io_stall_total.set({ database }, stall);
       metrics.mssql_io_stall.set({ database, type: "read" }, read);
       metrics.mssql_io_stall.set({ database, type: "write" }, write);
-      metrics.mssql_io_stall.set({ database, type: "queued_read" }, queued_read);
-      metrics.mssql_io_stall.set({ database, type: "queued_write" }, queued_write);
     }
   },
 };

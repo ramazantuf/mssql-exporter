@@ -388,6 +388,17 @@ FROM sys.dm_os_sys_memory`,
   },
 };
 
+const mssql_batch_requests_per_second = {
+  metrics: {
+    mssql_batch_requests_per_second: new  client.Gauge({ name: "mssql_batch_requests_per_second", help: "SQL Server’ın saniyede kaç SQL komutu işlediğini gösterir"}),
+  },
+  query: `SELECT cntr_value FROM sys.dm_os_performance_counters WHERE counter_name = 'Batch Requests/sec'`,
+  collect: (rows, metrics) => {
+    const mssql_batch_requests_per_second = rows[0][0].value;
+    metrics.mssql_batch_requests_per_second.set(mssql_batch_requests_per_second);
+  },
+};
+
 const entries = {
   mssql_up,
   mssql_product_version,
@@ -406,6 +417,7 @@ const entries = {
   mssql_transactions,
   mssql_os_process_memory,
   mssql_os_sys_memory,
+  mssql_batch_requests_per_second,
 };
 
 module.exports = {

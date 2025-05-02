@@ -395,6 +395,7 @@ const mssql_batch_requests_per_sc = {
   query: `SELECT cntr_value FROM sys.dm_os_performance_counters WHERE counter_name = 'Batch Requests/sec'`,
   collect: (rows, metrics) => {
     const mssql_batch_requests_per_second = rows[0][0].value;
+    metricsLog("SQL Server’ın saniyede kaç SQL komutu Batch Requests/sec ", mssql_batch_requests_per_second);
     metrics.mssql_batch_requests_per_second.set(mssql_batch_requests_per_second);
   },
 };

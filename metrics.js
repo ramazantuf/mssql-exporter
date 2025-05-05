@@ -226,7 +226,7 @@ const mssql_buffer_manager = {
             SELECT rtrim(counter_name) as counter_name, cntr_value
             FROM sys.dm_os_performance_counters
             WHERE counter_name in ('Page reads/sec', 'Page writes/sec', 'Page life expectancy', 'Lazy writes/sec', 'Checkpoint pages/sec')
-            AND object_name = 'SQLServer:Buffer Manager'
+            --- AND object_name = 'SQLServer:Buffer Manager'
         ) d
         PIVOT
         (

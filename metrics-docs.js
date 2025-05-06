@@ -1,5 +1,5 @@
 const { entries } = require("./metrics");
-//root dan symfony fabien sende gel
+//root dan afilina sende gel
 // DOCUMENTATION of queries and their associated metrics (targeted to DBAs)
 Object.entries(entries).forEach(([entryName, entry]) => {
   console.log("--[", entryName, "]");

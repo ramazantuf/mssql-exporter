@@ -1,5 +1,5 @@
 const { entries } = require("./metrics");
-//root dan sebastian sende gel
+//root dan jon sende gel
 // DOCUMENTATION of queries and their associated metrics (targeted to DBAs)
 Object.entries(entries).forEach(([entryName, entry]) => {
   console.log("--[", entryName, "]");

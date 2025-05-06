@@ -35,7 +35,7 @@ Please feel free to submit other interesting metrics to include.
 
 ## Usage
 
-`docker run -e SERVER=192.168.56.101 -e USERNAME=SA -e PASSWORD=qkD4x3yy -e DEBUG=app -p 4000:4000 --name prometheus-mssql-exporter awaragi/prometheus-mssql-exporter`
+`docker run -e SERVER=192.168.56.101 -e USERNAME=SA -e PASSWORD=qkD4x3yy -e DEBUG=app -p 4000:4000 --name prometheus-mssql-exporter ramazantufekci/mssql-exporter`
 
 The image supports the following environments and exposes port 4000
 
@@ -56,13 +56,9 @@ It is **_required_** that the specified user has the following permissions
 
 ### Unable to connect to database
 
-Raised in [issue #19](https://github.com/awaragi/prometheus-mssql-exporter/issues/19)
-
 Probably your SQL Server is working as named instance. For named instances the TCP port is dynamically configured by default, so you may need do explicitly specify port in MSSQL settings as described [here](https://docs.microsoft.com/en-US/sql/database-engine/configure-windows/configure-a-server-to-listen-on-a-specific-tcp-port?view=sql-server-ver15).
 
 ### Running multiple instances of exporter
-
-Raised in [issue #20](https://github.com/awaragi/prometheus-mssql-exporter/issues/20)
 
 Each container should use its own docker port forward (e.g. -p 4001:4000 and -p 4002:4000)
 
@@ -70,7 +66,7 @@ Each container should use its own docker port forward (e.g. -p 4001:4000 and -p 
 
 Here are some suggestions on available Grafana dashboards. If you are an author or such dashboard and want to have it referenced here, simply create a Pull Request.
 
-- https://grafana.com/grafana/dashboards/13919
+- https://grafana.com/grafana/dashboards/23386
 
 ### Running in the background
 

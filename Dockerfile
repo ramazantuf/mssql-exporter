@@ -9,7 +9,7 @@ RUN mkdir -p /usr/src/app
 WORKDIR /usr/src/app
 
 # Copy application
-COPY package.json package-lock.json *.js ./
+COPY package.json package-lock.json src/*.js ./
 
 # Install dependencies
 RUN npm ci --production
